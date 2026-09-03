@@ -54,21 +54,21 @@ Build a web application that allows users to:
 
 ## Tasks
 
-* [ ] Create GitHub repository
-* [ ] Clone repository locally
-* [ ] Create `backend/` directory
-* [ ] Generate Spring Boot project with Spring Initializr
-* [ ] Configure Maven
-* [ ] Configure Java
-* [ ] Add Spring Web
-* [ ] Add Spring Data JPA
-* [ ] Add Validation
-* [ ] Add PostgreSQL Driver
-* [ ] Add Spring Boot DevTools
-* [ ] Verify application starts
-* [ ] Configure `.gitignore`
-* [ ] Create initial README
-* [ ] Make initial Git commit
+* [/] Create GitHub repository
+* [/] Clone repository locally
+* [/] Create `backend/` directory
+* [/] Generate Spring Boot project with Spring Initializr
+* [/] Configure Maven
+* [/] Configure Java
+* [/] Add Spring Web
+* [/] Add Spring Data JPA
+* [/] Add Validation
+* [/] Add PostgreSQL Driver
+* [/] Add Spring Boot DevTools
+* [/] Verify application starts
+* [/] Configure `.gitignore`
+* [/] Create initial README
+* [/] Make initial Git commit
 
 ## Initial Stack
 
@@ -100,14 +100,14 @@ Git/GitHub
 
 ## Tasks
 
-* [ ] Create package structure
-* [ ] Create `controller`
-* [ ] Create `service`
-* [ ] Create `repository`
-* [ ] Create `model`
-* [ ] Create `dto`
-* [ ] Create `exception`
-* [ ] Create `config`
+* [/] Create package structure
+* [/] Create `controller`
+* [/] Create `service`
+* [/] Create `repository`
+* [/] Create `model`
+* [/] Create `dto`
+* [/] Create `exception`
+* [/] Create `config`
 * [ ] Create initial controller
 * [ ] Create initial service
 * [ ] Verify dependency injection
