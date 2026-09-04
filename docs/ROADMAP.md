@@ -108,9 +108,9 @@ Git/GitHub
 * [/] Create `dto`
 * [/] Create `exception`
 * [/] Create `config`
-* [ ] Create initial controller
-* [ ] Create initial service
-* [ ] Verify dependency injection
+* [/] Create initial controller
+* [/] Create initial service
+* [/] Verify dependency injection
 
 ### Target Structure
 
