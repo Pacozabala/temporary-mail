@@ -185,8 +185,8 @@ storagePath
 
 ## Tasks
 
-* [ ] Create PostgreSQL database
-* [ ] Configure database connection
+* [/] Create PostgreSQL database
+* [/] Configure database connection
 * [ ] Create `Mailbox` entity
 * [ ] Create `Email` entity
 * [ ] Define mailbox/email relationship
