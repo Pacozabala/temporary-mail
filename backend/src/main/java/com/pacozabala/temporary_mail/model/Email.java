@@ -20,9 +20,8 @@ public class Email {
     private String body;
     private LocalDateTime receivedAt;
     
-    public Email(Long id, Mailbox mailbox, String sender, String recipient, String subject, String body,
+    public Email(Mailbox mailbox, String sender, String recipient, String subject, String body,
             LocalDateTime receivedAt) {
-        this.id = id;
         this.mailbox = mailbox;
         this.sender = sender;
         this.recipient = recipient;

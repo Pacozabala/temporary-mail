@@ -21,8 +21,7 @@ public class Mailbox {
     @OneToMany(mappedBy = "mailbox", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Email> emails = new ArrayList<>();
     
-    public Mailbox(Long id, String address, LocalDateTime createdAt, LocalDateTime expiresAt) {
-        this.id = id;
+    public Mailbox(String address, LocalDateTime createdAt, LocalDateTime expiresAt) {
         this.address = address;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
