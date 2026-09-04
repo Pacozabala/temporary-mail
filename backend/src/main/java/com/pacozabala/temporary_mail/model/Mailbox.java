@@ -1,6 +1,8 @@
 package com.pacozabala.temporary_mail.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -15,6 +17,9 @@ public class Mailbox {
     private String address;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
+
+    @OneToMany(mappedBy = "mailbox", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Email> emails = new ArrayList<>();
     
     public Mailbox(Long id, String address, LocalDateTime createdAt, LocalDateTime expiresAt) {
         this.id = id;

@@ -11,17 +11,19 @@ public class Email {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long mailboxId;
+    @ManyToOne 
+    @JoinColumn(name = "mailbox_id", nullable = false)
+    private Mailbox mailbox;
     private String sender;
     private String recipient;
     private String subject;
     private String body;
     private LocalDateTime receivedAt;
     
-    public Email(Long id, Long mailboxId, String sender, String recipient, String subject, String body,
+    public Email(Long id, Mailbox mailbox, String sender, String recipient, String subject, String body,
             LocalDateTime receivedAt) {
         this.id = id;
-        this.mailboxId = mailboxId;
+        this.mailbox = mailbox;
         this.sender = sender;
         this.recipient = recipient;
         this.subject = subject;
@@ -37,12 +39,12 @@ public class Email {
         this.id = id;
     }
 
-    public Long getMailboxId() {
-        return mailboxId;
+    public Mailbox getMailbox() {
+        return mailbox;
     }
 
-    public void setMailboxId(Long mailboxId) {
-        this.mailboxId = mailboxId;
+    public void setMailbox(Mailbox mailbox) {
+        this.mailbox = mailbox;
     }
 
     public String getSender() {
