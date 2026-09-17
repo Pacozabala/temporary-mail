@@ -187,12 +187,12 @@ storagePath
 
 * [/] Create PostgreSQL database
 * [/] Configure database connection
-* [ ] Create `Mailbox` entity
-* [ ] Create `Email` entity
-* [ ] Define mailbox/email relationship
-* [ ] Create repositories
-* [ ] Verify Hibernate creates tables
-* [ ] Test basic persistence
+* [/] Create `Mailbox` entity
+* [/] Create `Email` entity
+* [/] Define mailbox/email relationship
+* [/] Create repositories
+* [/] Verify Hibernate creates tables
+* [/] Test basic persistence
 * [ ] Decide how expired data will be identified
 
 ### Milestone
