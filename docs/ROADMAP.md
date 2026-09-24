@@ -193,7 +193,7 @@ storagePath
 * [/] Create repositories
 * [/] Verify Hibernate creates tables
 * [/] Test basic persistence
-* [ ] Decide how expired data will be identified
+* [/] Decide how expired data will be identified
 
 ### Milestone
 
