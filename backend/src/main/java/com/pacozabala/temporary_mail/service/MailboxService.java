@@ -18,7 +18,6 @@ public class MailboxService {
     }
 
     public MailboxResponse createMailbox() {
-
         String address = generateAddress();
 
         while (mailboxRepository.existsByAddress(address)) {
@@ -37,27 +36,23 @@ public class MailboxService {
     }
 
     public MailboxResponse getMailbox(Long id) {
-
         Mailbox foundMailbox = mailboxRepository.findById(id).get();
 
         return toResponse(foundMailbox);
-        
     }
 
     public void deleteMailbox(Long id) {
-
+        mailboxRepository.deleteById(id);
     }
 
     private String generateAddress() {
         String uuid = UUID.randomUUID().toString();
-
         String randomString = uuid.replace("-", "").substring(0, 10);
 
         return randomString + "@temporarymail.com";
     }
     
     private MailboxResponse toResponse(Mailbox mailbox) {
-
         MailboxResponse response = new MailboxResponse(
             mailbox.getId(), 
             mailbox.getAddress(), 
