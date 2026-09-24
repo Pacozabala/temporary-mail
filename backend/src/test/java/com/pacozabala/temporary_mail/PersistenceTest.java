@@ -8,13 +8,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.pacozabala.temporary_mail.model.Email;
 import com.pacozabala.temporary_mail.model.Mailbox;
+import com.pacozabala.temporary_mail.repository.EmailRepository;
 import com.pacozabala.temporary_mail.repository.MailboxRepository;
 
 @SpringBootTest 
 public class PersistenceTest {
     @Autowired 
     private MailboxRepository mailboxRepository;
+
+    @Autowired 
+    private EmailRepository emailRepository;
 
     @Test
     void saveMailbox() {
@@ -29,5 +34,28 @@ public class PersistenceTest {
         System.out.println("Saved mailbox ID: " + saved.getId());
 
         assertNotNull(saved);
+    }
+
+    @Test
+    void saveEmail() {
+        Mailbox mailbox = new Mailbox(
+            "test@temporary_mail.com",
+            LocalDateTime.now(), 
+            LocalDateTime.now().plusHours(1)
+        );
+        Mailbox savedMailbox = mailboxRepository.save(mailbox);
+
+        Email email = new Email(
+            savedMailbox, 
+            "sender@example.com", 
+            "test@tempmail.com", 
+            "Test email", 
+            "Hello!", 
+            LocalDateTime.now()
+        );
+
+        Email savedEmail = emailRepository.save(email);
+
+        assertNotNull(savedEmail);
     }
 }
