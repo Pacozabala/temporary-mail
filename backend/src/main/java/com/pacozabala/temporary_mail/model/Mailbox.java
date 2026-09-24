@@ -14,6 +14,7 @@ public class Mailbox {
     private Long id;
 
     // mailbox's address
+    @Column(nullable = false, unique = true)
     private String address;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
