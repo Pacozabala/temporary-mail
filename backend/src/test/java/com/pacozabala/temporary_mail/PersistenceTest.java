@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.time.LocalDateTime;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,12 @@ public class PersistenceTest {
 
     @Autowired 
     private EmailRepository emailRepository;
+
+    @AfterEach
+    void cleanup() {
+        emailRepository.deleteAll();
+        mailboxRepository.deleteAll();
+    }
 
     @Test
     void saveMailbox() {
