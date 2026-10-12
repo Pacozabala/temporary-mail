@@ -83,6 +83,95 @@ public class MailboxControllerTest {
         );
     }
 
-    
+   @Test
+    void deleteMailbox_shouldDeleteMailbox() throws Exception {
+
+        Mailbox mailbox = new Mailbox(
+                "delete123@temporarymail.com",
+                LocalDateTime.now(),
+                LocalDateTime.now().plusHours(2)
+        );
+
+        Mailbox savedMailbox = mailboxRepository.save(mailbox);
+
+        mockMvc.perform(delete("/mailboxes/{id}", savedMailbox.getId()))
+                .andExpect(status().isNoContent());
+
+        org.junit.jupiter.api.Assertions.assertFalse(
+                mailboxRepository.existsById(savedMailbox.getId())
+        );
+    }
+
+    @Test
+    void getInbox_shouldReturnEmailsForMailbox() throws Exception {
+
+        Mailbox mailbox = new Mailbox(
+                "inbox123@temporarymail.com",
+                LocalDateTime.now(),
+                LocalDateTime.now().plusHours(2)
+        );
+
+        Mailbox savedMailbox = mailboxRepository.save(mailbox);
+
+        Email email = new Email(
+                savedMailbox,
+                "sender@example.com",
+                savedMailbox.getAddress(),
+                "Test subject",
+                "Test body",
+                LocalDateTime.now()
+        );
+
+        emailRepository.save(email);
+
+        mockMvc.perform(get("/mailboxes/{id}/emails", savedMailbox.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id").exists())
+                .andExpect(jsonPath("$[0].sender")
+                        .value("sender@example.com"))
+                .andExpect(jsonPath("$[0].recipient")
+                        .value(savedMailbox.getAddress()))
+                .andExpect(jsonPath("$[0].subject")
+                        .value("Test subject"))
+                .andExpect(jsonPath("$[0].body")
+                        .value("Test body"));
+    }
+
+    @Test
+    void getEmail_shouldReturnEmail() throws Exception {
+
+        Mailbox mailbox = new Mailbox(
+                "email123@temporarymail.com",
+                LocalDateTime.now(),
+                LocalDateTime.now().plusHours(2)
+        );
+
+        Mailbox savedMailbox = mailboxRepository.save(mailbox);
+
+        Email email = new Email(
+                savedMailbox,
+                "sender@example.com",
+                savedMailbox.getAddress(),
+                "Individual email",
+                "Email body",
+                LocalDateTime.now()
+        );
+
+        Email savedEmail = emailRepository.save(email);
+
+        mockMvc.perform(get(
+                "/mailboxes/{id}/emails/{emailId}",
+                savedMailbox.getId(),
+                savedEmail.getId()
+        ))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(savedEmail.getId()))
+                .andExpect(jsonPath("$.sender")
+                        .value("sender@example.com"))
+                .andExpect(jsonPath("$.subject")
+                        .value("Individual email"))
+                .andExpect(jsonPath("$.body")
+                        .value("Email body"));
+    }
 
 }
