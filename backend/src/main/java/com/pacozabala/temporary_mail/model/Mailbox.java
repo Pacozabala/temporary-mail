@@ -22,6 +22,9 @@ public class Mailbox {
     @OneToMany(mappedBy = "mailbox", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Email> emails = new ArrayList<>();
     
+    protected Mailbox() {
+        
+    }
     public Mailbox(String address, LocalDateTime createdAt, LocalDateTime expiresAt) {
         this.address = address;
         this.createdAt = createdAt;

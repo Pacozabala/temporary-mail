@@ -20,6 +20,9 @@ public class Email {
     private String body;
     private LocalDateTime receivedAt;
     
+    protected Email() {
+        
+    }
     public Email(Mailbox mailbox, String sender, String recipient, String subject, String body,
             LocalDateTime receivedAt) {
         this.mailbox = mailbox;
