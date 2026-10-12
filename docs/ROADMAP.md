@@ -267,7 +267,7 @@ GET /mailboxes/{id}/emails/{emailId}
 * [/] Implement individual email endpoint
 * [/] Add validation
 * [/] Add exception handling
-* [ ] Test endpoints with Postman
+* [/] Test endpoints with Postman
 
 ### Milestone
 
