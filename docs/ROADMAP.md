@@ -256,17 +256,17 @@ GET /mailboxes/{id}/emails/{emailId}
 
 ## Tasks
 
-* [ ] Create mailbox DTOs
-* [ ] Create mailbox service
-* [ ] Create mailbox controller
-* [ ] Generate unique mailbox addresses
-* [ ] Set mailbox expiration
-* [ ] Implement mailbox retrieval
-* [ ] Implement mailbox deletion
-* [ ] Implement inbox endpoint
-* [ ] Implement individual email endpoint
-* [ ] Add validation
-* [ ] Add exception handling
+* [/] Create mailbox DTOs
+* [/] Create mailbox service
+* [/] Create mailbox controller
+* [/] Generate unique mailbox addresses
+* [/] Set mailbox expiration
+* [/] Implement mailbox retrieval
+* [/] Implement mailbox deletion
+* [/] Implement inbox endpoint
+* [/] Implement individual email endpoint
+* [/] Add validation
+* [/] Add exception handling
 * [ ] Test endpoints with Postman
 
 ### Milestone
