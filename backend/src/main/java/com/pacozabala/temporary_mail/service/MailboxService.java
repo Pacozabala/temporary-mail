@@ -103,7 +103,8 @@ public class MailboxService {
             email.getRecipient(),
             email.getSubject(), 
             email.getBody(), 
-            email.getReceivedAt()
+            email.getReceivedAt(),
+            email.getIsRead()
         );
 
         return response;

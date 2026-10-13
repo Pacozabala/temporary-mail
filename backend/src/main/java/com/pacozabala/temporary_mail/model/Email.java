@@ -19,18 +19,21 @@ public class Email {
     private String subject;
     private String body;
     private LocalDateTime receivedAt;
+
+    private boolean isRead;
     
     protected Email() {
         
     }
     public Email(Mailbox mailbox, String sender, String recipient, String subject, String body,
-            LocalDateTime receivedAt) {
+            LocalDateTime receivedAt, boolean isRead) {
         this.mailbox = mailbox;
         this.sender = sender;
         this.recipient = recipient;
         this.subject = subject;
         this.body = body;
         this.receivedAt = receivedAt;
+        this.isRead = isRead;
     }
     public Long getId() {
         return id;
@@ -73,6 +76,12 @@ public class Email {
     }
     public void setReceivedAt(LocalDateTime receivedAt) {
         this.receivedAt = receivedAt;
+    }
+    public boolean getIsRead() {
+        return isRead;
+    }
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
 }

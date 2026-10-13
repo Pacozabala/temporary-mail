@@ -10,15 +10,16 @@ public class EmailResponse {
     private String subject;
     private String body;
     private LocalDateTime receivedAt;
+    private boolean isRead;
     
-    public EmailResponse(Long id, String sender, String recipient, String subject, String body,
-            LocalDateTime receivedAt) {
+    public EmailResponse(Long id, String sender, String recipient, String subject, String body, LocalDateTime receivedAt, boolean isRead) {
         this.id = id;
         this.sender = sender;
         this.recipient = recipient;
         this.subject = subject;
         this.body = body;
         this.receivedAt = receivedAt;
+        this.isRead = isRead;
     }
 
     public Long getId() {
@@ -61,6 +62,13 @@ public class EmailResponse {
     }
     public void setReceivedAt(LocalDateTime receivedAt) {
         this.receivedAt = receivedAt;
+    }
+    
+    public boolean getIsRead() {
+        return isRead;
+    }
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
 }
