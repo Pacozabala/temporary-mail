@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -68,5 +69,18 @@ public class MailboxController {
         return ResponseEntity.ok(email);
     }
     
+    @PatchMapping("/{id}/emails/{emailId}")
+    public ResponseEntity<EmailResponse> markAsRead(@PathVariable Long id, @PathVariable Long emailId) {
+        EmailResponse email = emailService.markAsRead(id, emailId);
+
+        return ResponseEntity.ok(email);
+    }
+
+    @DeleteMapping("/{id}/emails/{emailId}")
+     public ResponseEntity<Void> deleteEmail(@PathVariable Long id, @PathVariable Long emailId) {
+        emailService.deleteEmail(id, emailId);
+
+        return ResponseEntity.noContent().build();
+     }
     
 }

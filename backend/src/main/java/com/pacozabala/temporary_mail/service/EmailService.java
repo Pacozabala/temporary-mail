@@ -43,6 +43,25 @@ public class EmailService {
         throw new EmailNotFoundException(emailId);
     }
 
+    public EmailResponse markAsRead(Long id, Long emailId) {
+
+        Email foundEmail = emailRepository.findById(emailId).orElseThrow(() -> new EmailNotFoundException(emailId));
+        if (foundEmail.getMailbox().getId().equals(id)) {
+            foundEmail.setIsRead(true);
+            Email savedEmail = emailRepository.save(foundEmail);
+
+            return toEmailResponse(savedEmail);
+        }
+        throw new EmailNotFoundException(emailId);
+    }
+
+    public void deleteEmail(Long id, Long emailId) {
+        Email foundEmail = emailRepository.findById(emailId).orElseThrow(() -> new EmailNotFoundException(emailId));
+        if (foundEmail.getMailbox().getId().equals(id)) {
+           emailRepository.delete(foundEmail);
+        }
+    }
+
     private EmailResponse toEmailResponse(Email email) {
         EmailResponse response = new EmailResponse(
             email.getId(), 
