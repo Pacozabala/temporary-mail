@@ -58,8 +58,7 @@ public class PersistenceTest {
             "test@tempmail.com", 
             "Test email", 
             "Hello!", 
-            LocalDateTime.now(),
-            true
+            LocalDateTime.now()
         );
 
         Email savedEmail = emailRepository.save(email);

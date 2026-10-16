@@ -8,8 +8,6 @@ import com.pacozabala.temporary_mail.dto.MailboxResponse;
 import com.pacozabala.temporary_mail.service.EmailService;
 import com.pacozabala.temporary_mail.service.MailboxService;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

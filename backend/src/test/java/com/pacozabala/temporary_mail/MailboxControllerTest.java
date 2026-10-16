@@ -119,8 +119,7 @@ public class MailboxControllerTest {
                 savedMailbox.getAddress(),
                 "Test subject",
                 "Test body",
-                LocalDateTime.now(),
-                true
+                LocalDateTime.now()
         );
 
         emailRepository.save(email);
@@ -155,8 +154,7 @@ public class MailboxControllerTest {
                 savedMailbox.getAddress(),
                 "Individual email",
                 "Email body",
-                LocalDateTime.now(),
-                true
+                LocalDateTime.now()
         );
 
         Email savedEmail = emailRepository.save(email);
