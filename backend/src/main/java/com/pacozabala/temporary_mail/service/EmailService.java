@@ -23,13 +23,18 @@ public class EmailService {
         this.emailRepository = emailRepository;
     }
 
-    public Page<EmailResponse> getInbox(Long id, Pageable pageable) {
+    public Page<EmailResponse> getInbox(Long id, Pageable pageable, Boolean read) {
 
         Mailbox mailbox = mailboxRepository.findById(id).orElseThrow(()-> new MailboxNotFoundException(id));
         Long mailboxId = mailbox.getId();
         
-        Page<Email> emails = emailRepository.findByMailboxId(mailboxId, pageable);
+        Page<Email> emails;
 
+        if (read == null) {
+            emails = emailRepository.findByMailboxId(mailboxId, pageable);
+        } else {
+            emails = emailRepository.findByMailboxIdAndIsRead(mailboxId, read, pageable);
+        }
         return emails.map(email -> toEmailResponse(email));
     }
 
@@ -60,6 +65,7 @@ public class EmailService {
         if (foundEmail.getMailbox().getId().equals(id)) {
            emailRepository.delete(foundEmail);
         }
+        throw new EmailNotFoundException(emailId);
     }
 
     private EmailResponse toEmailResponse(Email email) {

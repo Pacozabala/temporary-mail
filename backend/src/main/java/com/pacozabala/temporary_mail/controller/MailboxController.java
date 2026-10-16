@@ -1,6 +1,7 @@
 package com.pacozabala.temporary_mail.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pacozabala.temporary_mail.dto.EmailResponse;
@@ -57,9 +58,10 @@ public class MailboxController {
     @GetMapping("/{id}/emails")
     public Page<EmailResponse> getInbox(
         @PathVariable Long id, 
-        @PageableDefault(size=20, sort="receivedAt", direction=Sort.Direction.DESC) Pageable pageable
+        @PageableDefault(size=20, sort="receivedAt", direction=Sort.Direction.DESC) Pageable pageable,
+        @RequestParam(required = false) Boolean read
     ) {
-        return emailService.getInbox(id, pageable);
+        return emailService.getInbox(id, pageable, read);
     }
 
     @GetMapping("/{id}/emails/{emailId}")
@@ -69,7 +71,7 @@ public class MailboxController {
         return ResponseEntity.ok(email);
     }
     
-    @PatchMapping("/{id}/emails/{emailId}")
+    @PatchMapping("/{id}/emails/{emailId}/read")
     public ResponseEntity<EmailResponse> markAsRead(@PathVariable Long id, @PathVariable Long emailId) {
         EmailResponse email = emailService.markAsRead(id, emailId);
 

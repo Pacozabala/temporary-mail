@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.pacozabala.temporary_mail.model.Email;
 
 public interface EmailRepository extends JpaRepository<Email, Long>{
-    List<Email> findByMailboxId(Long mailboxId);
-
     Page<Email> findByMailboxId(Long mailboxId, Pageable pageable);
+
+    Page<Email> findByMailboxIdAndIsRead(Long mailboxId, boolean isRead, Pageable pageable);
 
     List<Email> findByMailboxIdOrderByReceivedAtDesc(Long mailboxId);
 }
