@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pacozabala.temporary_mail.dto.EmailResponse;
 import com.pacozabala.temporary_mail.dto.MailboxResponse;
+import com.pacozabala.temporary_mail.service.EmailService;
 import com.pacozabala.temporary_mail.service.MailboxService;
 
 import java.util.List;
@@ -22,9 +23,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/mailboxes")
 public class MailboxController {
     private final MailboxService mailboxService;
+    private final EmailService emailService;
 
-    public MailboxController(MailboxService mailboxService) {
+    public MailboxController(MailboxService mailboxService, EmailService emailService) {
         this.mailboxService = mailboxService;
+        this.emailService = emailService;
     }
 
     @PostMapping
@@ -50,12 +53,12 @@ public class MailboxController {
     
     @GetMapping("/{id}/emails")
     public List<EmailResponse> getInbox(@PathVariable Long id) {
-        return mailboxService.getInbox(id);
+        return emailService.getInbox(id);
     }
 
     @GetMapping("/{id}/emails/{emailId}")
     public ResponseEntity<EmailResponse> getEmail(@PathVariable Long id, @PathVariable Long emailId) {
-        EmailResponse email = mailboxService.getEmail(id, emailId);
+        EmailResponse email = emailService.getEmail(id, emailId);
 
         return ResponseEntity.ok(email);
     }

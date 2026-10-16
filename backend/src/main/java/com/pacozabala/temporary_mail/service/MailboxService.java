@@ -1,6 +1,5 @@
 package com.pacozabala.temporary_mail.service;
 
-import com.pacozabala.temporary_mail.repository.EmailRepository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +13,7 @@ import com.pacozabala.temporary_mail.exception.EmailNotFoundException;
 import com.pacozabala.temporary_mail.exception.MailboxNotFoundException;
 import com.pacozabala.temporary_mail.model.Email;
 import com.pacozabala.temporary_mail.model.Mailbox;
+import com.pacozabala.temporary_mail.repository.EmailRepository;
 import com.pacozabala.temporary_mail.repository.MailboxRepository;
 
 @Service 
@@ -57,28 +57,6 @@ public class MailboxService {
         mailboxRepository.delete(mailbox);
     }
 
-    public List<EmailResponse> getInbox(Long id) {
-        List<EmailResponse> responses = new ArrayList<>();
-
-        Mailbox mailbox = mailboxRepository.findById(id).orElseThrow(()-> new MailboxNotFoundException(id));
-        Long mailboxId = mailbox.getId();
-        for (Email email:  emailRepository.findByMailboxId(mailboxId)) {
-            responses.add(toEmailResponse(email));
-        }
-
-        return responses;
-    }
-
-    public EmailResponse getEmail(Long id, Long emailId) {
-
-        Email email = emailRepository.findById(emailId).orElseThrow(() -> new EmailNotFoundException(emailId));
-
-        if (email.getMailbox().getId().equals(id)) {
-            return toEmailResponse(email);
-        }
-        throw new EmailNotFoundException(emailId);
-    }
-
     private String generateAddress() {
         String uuid = UUID.randomUUID().toString();
         String randomString = uuid.replace("-", "").substring(0, 10);
@@ -91,20 +69,6 @@ public class MailboxService {
             mailbox.getId(), 
             mailbox.getAddress(), 
             mailbox.getExpiresAt()
-        );
-
-        return response;
-    }
-
-    private EmailResponse toEmailResponse(Email email) {
-        EmailResponse response = new EmailResponse(
-            email.getId(), 
-            email.getSender(), 
-            email.getRecipient(),
-            email.getSubject(), 
-            email.getBody(), 
-            email.getReceivedAt(),
-            email.getIsRead()
         );
 
         return response;
