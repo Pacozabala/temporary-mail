@@ -1,14 +1,11 @@
 package com.pacozabala.temporary_mail.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.pacozabala.temporary_mail.dto.EmailResponse;
-import com.pacozabala.temporary_mail.dto.MailboxResponse;
 import com.pacozabala.temporary_mail.exception.EmailNotFoundException;
 import com.pacozabala.temporary_mail.exception.MailboxNotFoundException;
 import com.pacozabala.temporary_mail.model.Email;
@@ -16,6 +13,7 @@ import com.pacozabala.temporary_mail.model.Mailbox;
 import com.pacozabala.temporary_mail.repository.EmailRepository;
 import com.pacozabala.temporary_mail.repository.MailboxRepository;
 
+@Service
 public class EmailService {
 
     private final EmailRepository emailRepository;
