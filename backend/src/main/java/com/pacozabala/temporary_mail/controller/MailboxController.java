@@ -10,6 +10,10 @@ import com.pacozabala.temporary_mail.service.MailboxService;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,8 +56,11 @@ public class MailboxController {
     }
     
     @GetMapping("/{id}/emails")
-    public List<EmailResponse> getInbox(@PathVariable Long id) {
-        return emailService.getInbox(id);
+    public Page<EmailResponse> getInbox(
+        @PathVariable Long id, 
+        @PageableDefault(size=20, sort="receivedAt", direction=Sort.Direction.DESC) Pageable pageable
+    ) {
+        return emailService.getInbox(id, pageable);
     }
 
     @GetMapping("/{id}/emails/{emailId}")

@@ -3,6 +3,8 @@ package com.pacozabala.temporary_mail.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.pacozabala.temporary_mail.dto.EmailResponse;
@@ -24,16 +26,14 @@ public class EmailService {
         this.emailRepository = emailRepository;
     }
 
-    public List<EmailResponse> getInbox(Long id) {
-        List<EmailResponse> responses = new ArrayList<>();
+    public Page<EmailResponse> getInbox(Long id, Pageable pageable) {
 
         Mailbox mailbox = mailboxRepository.findById(id).orElseThrow(()-> new MailboxNotFoundException(id));
         Long mailboxId = mailbox.getId();
-        for (Email email:  emailRepository.findByMailboxId(mailboxId)) {
-            responses.add(toEmailResponse(email));
-        }
+        
+        Page<Email> emails = emailRepository.findByMailboxId(mailboxId, pageable);
 
-        return responses;
+        return emails.map(email -> toEmailResponse(email));
     }
 
     public EmailResponse getEmail(Long id, Long emailId) {
